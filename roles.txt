@@ -1,0 +1,31 @@
+Feature
+Income
+Expense
+
+
+## Folder Structuring
+
+  api/
+    controllers/
+    routes/
+
+  components/
+    income/
+      ....
+    expense/
+      ....
+    transactions/
+      ....
+
+  pages/
+    index.js
+    income/
+      - index.js
+      - add_income.js
+    expense/
+      - index.js
+      - add_expense.js
+    transactions/
+      - index.js
+
+  server.js

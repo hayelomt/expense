@@ -1,0 +1,23 @@
+## As a user i can add income
+  - income format: {
+    category,
+    amount,
+    date,
+    total,
+  }
+  - upon income add save to file system
+  - upon income add add amount to total
+
+## As a user i can add expense
+  - expense format: {
+    category,
+    amount,
+    name,
+    date
+  }
+  - upon expense add save to file system
+  - upon adding expense diff from total income
+
+## As a user i can view transaction
+  - select date of transaction
+  - imoprt income nd expense from file nd show report
