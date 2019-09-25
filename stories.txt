@@ -16,7 +16,12 @@
     date
   }
   - upon expense add save to file system
-  - upon adding expense diff from total income
+  - upon adding expense diff from total income axios.post9
+    '/api/income/add-expense
+      {
+        amount: 
+      }
+      
 
 ## As a user i can view transaction
   - select date of transaction

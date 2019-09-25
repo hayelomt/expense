@@ -1,8 +1,11 @@
+import Layout from "../components/layout/Layout"
 
 const Index = () => (
-  <div>
-    Home Page
-  </div>
+  <Layout>
+    <div>
+      Home Page
+    </div>
+  </Layout>
 );
 
 export default Index;
