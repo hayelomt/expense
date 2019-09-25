@@ -1,13 +1,32 @@
+import React, {useState} from 'react';
+import AddExpense from './AddExpense';
+import ShowExpense from './ShowExpense';
 
-import React from 'react';
-import './expense.css'
+const Expense = () => {
+  const [screen, setScreen] = useState('view');
 
-function Expense() {
   return (
-    <div className="expense">
-      Express Component
-    </div>
-  )
+    <React.Fragment>
+      <div className="container">
+        <ul className="nav nav-tabs justify-content-center">
+          <li className="list-group-item">
+            <button onClick={() => setScreen('view')}>View</button>
+          </li>
+          <li className="list-group-item">
+            <button onClick={() => setScreen('add')}>Add</button>
+          </li>
+        </ul>
+        <div>
+          {
+            screen === 'view' ?
+              <ShowExpense />
+            :
+              <AddExpense />
+          }
+        </div>
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default Expense;

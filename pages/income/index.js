@@ -1,7 +1,9 @@
+import Layout from "../../components/layout/Layout";
+
 const Index = () => (
-  <div>
-    Income
-  </div>
+  <Layout>
+    Income Page
+  </Layout>
 )
 
 export default Index;
