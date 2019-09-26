@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start"
   },
-  "keywords": [],
+  "keywords": [
+    "nextjs",
+    "express",
+    "nodejs",
+    "expense tracker"
+  ],
   "author": "",
   "license": "ISC",
   "description": "",
