@@ -1,9 +1,13 @@
-import Layout from "../../components/layout/Layout";
+import Navbar from '../../components/income/Navbar'
+import AllIncomes from '../../components/income/AllIncomes'
+const axios = require('axios')
+
 
 const Index = () => (
-  <Layout>
-    Income Page
-  </Layout>
+  <div>
+    <Navbar/>
+    <AllIncomes/>
+  </div>
 )
 
 export default Index;

@@ -1,9 +1,8 @@
 const router = require('express').Router();
+const incomeController = require('../../controllers/income');
 
-router.post('/', (req, res) => {
-  res.json({
-    income: '4000'
-  });
-})
+router.get('/get-incomes', incomeController.getIncomes);
+
+router.post('/add-income', incomeController.addIncome);
 
 module.exports = router;
