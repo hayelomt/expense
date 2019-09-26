@@ -33,17 +33,19 @@ class Index extends React.Component {
     .catch((error) => {
       console.log(error);
     })
-    // axios.get('/api/income')
-    // .then(response => {
-    //   // console.log(response)
-    //       const data = response.data.data;
-    //       this.setState({expenseJson: data});
+    axios.get('/api/income/get-incomes')
+    .then(response => {
+      // console.log(response);
+      // console.log(response)
+      const data = response.data.data;
+      this.setState({incomeJson: data});
 
-    //       console.log(this.state.expenseJson)
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // })
+      console.log(this.state.incomeJson)
+
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
   extractArray = json => {
     return Object.keys(json).map((key) => json[key]);

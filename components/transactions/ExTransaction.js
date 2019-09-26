@@ -3,10 +3,16 @@ import Transaction from './index';
 const ExTransaction = (props) => (
     <Transaction date={props.date}>
         <div>
-            <strong><span>{props.name}</span></strong>
-            <strong><span>{props.amount}</span></strong>
+            <strong><span className="row-item">{props.name}</span></strong>
+            <strong><span className="row-item">{props.amount}</span></strong>
             <strong><span>{' ETB'}</span></strong>
-            
+            <style jsx>
+                {`
+                  .row-item{
+                      padding: 30px;
+                  }
+                `}
+            </style>
         </div>
     </Transaction>
     
