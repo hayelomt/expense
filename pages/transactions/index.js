@@ -1,65 +1,89 @@
 import Layout from "../../components/layout/Layout";
 import ExTransaction from "../../components/transactions/ExTransaction";
 import InTransaction from "../../components/transactions/InTransaction";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import axios from 'axios'; 
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
+
+
 
 class Index extends React.Component {
   constructor (props){
     super(props);
    this.state = {
-      selectedDate: new Date(),
-      expenseJson: [{ "1": { name: 'moto bike', amount: 345, date: new Date() },
-  "2":{ name: 'oil', amount: 452, date: new Date() } }],
-      incomeJson: [ { name: 'moto bike', amount: 345, date: new Date() },
-      { name: 'oil', amount: 452, date: new Date() } ],
+      selectedDate: this.formatDate(new Date().getDate()),
+      expenseJson: [],
+      incomeJson: [],
       expenseArray: [],
       incomeArray: []
     };
   }
 
-  // componentDidMount() {
-    //get request
-  //   axios.get('')
-  //   .then(response => {
-          // this.state.expenseArray = Object.keys(response).map((key) => response[key])
-  //   })
-  //   .catch((error) => {
-  //     console.log(e);
-  //   })
-  // }
-  extractArray = json => Object.keys(json[0]).map((key) => json[0][key]);
-  
-  filterByDate = array => {
-    // debugger;
-    try {
+  componentDidMount() {
+    // get request
+    console.log("component did mount.")
+    axios.get('/api/expense')
+    .then(response => {
+      // console.log(response)
+          const data = response.data.data;
+          this.setState({expenseJson: data});
 
-      return array.filter((item) => item.date.getTime() === this.state.selectedDate.getTime());
-    }
-    catch (e) {
+          console.log(this.state.expenseJson)
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    // axios.get('/api/income')
+    // .then(response => {
+    //   // console.log(response)
+    //       const data = response.data.data;
+    //       this.setState({expenseJson: data});
 
-      return []
-    }
+    //       console.log(this.state.expenseJson)
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // })
+  }
+  extractArray = json => {
+    return Object.keys(json).map((key) => json[key]);
     
-  };
-  
-  handleChange = date => {
+  }
+  filterByDate = (array, date) => {
+      return array.filter((item) => item.date.toString() === date.toString());
+    };
+
+  formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth()),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
+
+
+  handleDateChange = date => {
     this.setState({
       selectedDate: date,
-      expenseArray: this.filterByDate(this.extractArray(this.state.expenseJson)),
-      incomeArray: this.filterByDate(this.extractArray(this.state.incomeJson))
+      expenseArray: this.filterByDate(this.extractArray(this.state.expenseJson), date),
+      incomeArray: this.filterByDate(this.extractArray(this.state.incomeJson), date)      
     });
   };
-
   
   render() {
     return (
       <Layout>
-        <DatePicker
-            selected={this.state.selectedDate}
-            onChange={this.handleChange}
-        />
+        <div className="form-group">
+        <input className="form-control form-control-lg" type="date" value={this.state.selectedDate} onChange={event => this.handleDateChange(event.target.value)} />
+        <br />
+        
+        </div>
         <ul className="list-group">
           {this.state.incomeArray.map(function (income, i) {
             return (
